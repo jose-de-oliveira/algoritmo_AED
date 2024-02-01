@@ -66,7 +66,7 @@ def check_input(candidate, rules, test_variable):
 # and, if makes sense, an lowerbound for the information. as for example id is int64 and has no bound.
 # This list can be expanded to increase the accuracy of the algorithm in detection of data types.
 
-tabela = {
+input_dados = {
     'Nome da Variável': [
         'patrimônio contábil','data','numero de investidores','cnpj'
     ],
