@@ -1,2 +1,2 @@
-# algoritmo_AED
-algoritmo de exploração de base de dados
+# Algoritmo para análise exploratória de dados
+
