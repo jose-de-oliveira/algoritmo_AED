@@ -80,15 +80,15 @@ Com o uso de palavras chave, variáveis com esse perfil podem ser excluídas da 
 
 ### Tratativas de Carga de Dados
 
-Nesse ponto analisamos a completude de cada variável, considerando uma variável com 5% de nulos, um indicador suspeito. Analisa-se também a quantidade de fatores que mostram a quantidade de observações distintas na coluna da variável. Este passo é executado em todas as variáveis do dataset.
+Nesse ponto, analisamos a completude de cada variável, considerando uma variável com 5% de nulos, um indicador suspeito. Analisa-se também a quantidade de fatores que mostram a quantidade de observações distintas na coluna da variável. Este passo é executado em todas as variáveis do dataset.
 
 ### Tratativas de Variáveis Quantitativas
 
-Para variáveis quantitativas, que indicam **quanti**dade ou que "contam" alguma coisa, executam-se algumas medidas resumo como, média, mediana, mínimo, máximo, desvio-padrão, coeficiente de variação e coeficiente de assimetria. Algumas variáveis no mundo real podem medir valores aberrantes de assimetria devido a características atípicas porém inerentes ao contexto em que estão inseridas. Para isso a distância entre a mediana e o mínimo e a distância entre a mediana e o máximo. Alterações nessas medidas em múltiplas execuções da base podem alertar melhor sobre o perfil da distribuição dos dados. Além disso, conta-se a quantidade de observações fora do túnel de média e 3 desvios padrões para cima e para baixo.
+Para variáveis quantitativas, que indicam **quanti**dade ou que "contam" alguma coisa, executam-se algumas medidas resumo como, média, mediana, mínimo, máximo, desvio-padrão, coeficiente de variação e coeficiente de assimetria. Algumas variáveis no mundo real podem medir valores aberrantes de assimetria devido a características atípicas, porém inerentes ao contexto em que estão inseridas. Para isso, utilizamos a distância entre a mediana e o mínimo e a distância entre a mediana e o máximo para descrever tambem sobre a assimetria da variavel alvo. Alterações nessas medidas em múltiplas execuções da base podem alertar melhor sobre o perfil da distribuição dos dados. Além disso, conta-se a quantidade de observações fora do túnel de média e 3 desvios padrões para cima e para baixo.
 
 ### Tratativas de Variáveis Qualitativas
 
-Para variáveis qualitativas, que indicam **quali**dade ou que "qualificam" alguma coisa, executam-se algumas medidas como moda e frequência modal. Pensando em uma forma de mostrar a homogeneidade dessas variáveis, eu criei um "coeficiente de homogeneidade" a ideia é transformar a carga de frequências  de cada fator num conjunto de números e partir desse conjunto realizar o seu coeficiente de variação, em uma base que possuam frequências próximas, o coeficiente é próximo de zero e quanto mais aberrante for a frequência de algum fator maior o coeficiente de homogeneidade será indicando alta heterogeneidade.
+Para variáveis qualitativas, que indicam **quali**dade ou que "qualificam" alguma coisa, executam-se algumas medidas como moda e frequência modal. Pensando em uma forma de mostrar a homogeneidade dessas variáveis, eu criei um *coeficiente de homogeneidade*. A ideia é transformar a carga de frequências de cada fator num conjunto de números e a partir deste realizar o seu coeficiente de variação, em uma base que possuam frequências próximas, o coeficiente é próximo de zero e quanto mais aberrante for a frequência de algum fator, maior o coeficiente de homogeneidade, indicando alta heterogeneidade.
 
 ### Tratativas de Variáveis Temporais
 
@@ -96,7 +96,7 @@ Para variáveis que correspondem a datas, um coeficiente de homogeneidade de dat
 
 ### Nota e avaliação do dataset
 
-As colunas contendo o nome Avaliação, fazem uma classificação entre variáveis "ok" e variáveis que precisam de maior averiguação, que devem ser verificadas. Pela quantidade de fatores avaliados, uma nota ponderada classifica o estado da base. 
+As colunas contendo o nome Avaliação, fazem uma classificação entre aa saidas *ok* e *verificar*. Pela quantidade de fatores avaliados como *ok*, uma nota ponderada classifica o estado da base. 
 
 ```python
 # Based on the generated features, compute the final metric.
@@ -111,7 +111,7 @@ Convém lembrar que a nota é intrínseca aos valores colocados como pontos de c
 
 ### Saídas
 
-A primeira saída é um dataset de avaliação de cada variável, basicamente um boletim de notas de cada variável podendo assim ver de maneira generalizada o estado de cada indicador.
+A primeira saída é um dataset de avaliação de cada variável, basicamente um boletim. Assim, é possível ver de maneira generalizada o estado de cada indicador.
 
 ```python
 # Show the Final Dataset:
@@ -119,7 +119,7 @@ print("DataFrame de Saída:")
 print(output_df)
 ```
 
-A segunda saída é uma base de valores duplicados, aqui um valor repetido é simplesmente uma réplica perfeita da linha de todo um dataset.
+A segunda saída é uma base de valores duplicados, aqui um valor repetido é simplesmente uma réplica perfeita de quaisquer linha de todo um dataset.
 
 ```python
 # Show Duplicates
@@ -129,7 +129,7 @@ print(duplicates_df)
 print(f"\nDimensão do DataFrame de Linhas Duplicadas: {duplicates_df.shape[0]} linhas x {duplicates_df.shape[1]} colunas")
 ```
 
-A terceira saída é uma base que aponta os outliers com uma coluna motivo, descrevendo em que variável aquela linha apresentou informação aberrante, bem como os limites utilizados para tal avaliação.
+A terceira saída é uma base que aponta os outliers com uma coluna motivo, descrevendo em que variável aquela linha apresentou informação aberrante, bem como os limites utilizados para tal avaliação. 
 
 ```python
 # Show Outliers
@@ -140,4 +140,4 @@ print(list_outliers_df)
 
 ### Adaptação ao Dataiku
 
-Caso haja necessidade, é possível plugar o core do código em uma fórmula de python do dataiku, alterações podem ser necessárias para adequar a versão instalada com o código. O pacote textdistance precisa estar instalado para que o código funcione corretamente. As bases de saídas devem ser criadas na criação da receita.
+Caso haja necessidade, é possível plugar o core do código em uma fórmula de *python* do Dataiku. Alterações podem ser necessárias para adequar a versão instalada com o código. O pacote *textdistance* precisa estar instalado para que o código funcione corretamente. As bases de saídas devem ser criadas na criação da receita.
