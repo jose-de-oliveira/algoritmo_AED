@@ -5,12 +5,12 @@
 #############################################################################################################################################
 #############################################################################################################################################
 
-# Importing packages for the main code, in dataiku enviroment, the package textdistance must be installed
+# Importing packages for the main code, in dataiku environment, the package textdistance must be installed
 import pandas as pd
 import numpy as np
 import textdistance
 
-# Load the dataset (Change the text between '' to the desired filepath, tha dataset must be in xlsx)
+# Load the dataset (Change the text between '' to the desired file path, the dataset must be in xlsx)
 # In the dataiku implementation the code must set to the same object (df) to ensure execution
 df =  pd.read_excel('minha_base_exemplo.xlsx')
 
@@ -63,7 +63,7 @@ def check_input(candidate, rules, test_variable):
     return motivo_forb
 
 # The dictionary is composed by three informations: The name of the variable, The type of the variable
-# and, if makes sense, an lowerbound for the information. as for example id is int64 and has no bound.
+# and, if makes sense, an lower bound for the information. as for example id is int64 and has no bound.
 # This list can be expanded to increase the accuracy of the algorithm in detection of data types.
 
 input_dados = {
@@ -92,7 +92,7 @@ output_df = pd.DataFrame(columns=[
 ])
 
 # Forbidden variables are variables that must be checked but does not contribute for the dataset evaluation
-# or can be used in futher analysis
+# or can be used in further analysis
 Forbidden_variables = ['nome','fantasia','cnpj','razao']
 
 # By doing so, eligible variables are those ones which are not forbidden =)
@@ -155,7 +155,7 @@ for column in df.columns:
 
         if is_quantitative(col_data):
             classe = 'Quantitativa'    
-        # Filter of standard deviantions:
+        # Filter of standard deviations:
         # Here we shall compute the number of outliers by the common standard deviation filter
             filtro_sd_check = 'Ok'
             mean = col_data.mean()
@@ -231,7 +231,7 @@ for column in df.columns:
     ]], columns=output_df.columns)], ignore_index=True)
 
 # Based on the generated features, compute the final metric.
-# Here the dataset will recieve a value, a percentage of quality.
+# Here the dataset will receive a value, a percentage of quality.
 valid_counts = output_df[output_df.columns[output_df.columns.str.contains('Avaliação')]].apply(lambda x: x.value_counts().get('Ok', 0))
 total_counts = valid_counts + output_df[output_df.columns[output_df.columns.str.contains('Avaliação')]].apply(lambda x: x.value_counts().get('Verificar', 0))
 num_factor = sum(~np.isnan(valid_counts/total_counts))
@@ -266,26 +266,27 @@ output_df = pd.concat([output_df, pd.DataFrame([[
 ]], columns=output_df.columns)], ignore_index=True)
 
 
-# Using a notebook enviroment? Run those ones to visualize the final result and all dependencies
+# Using a notebook environment? Run those ones to visualize the final result and all dependencies
 # Show the Final Dataset:
-print("DataFrame de Saída:")
+print("Data Frame de Saída:")
 print(output_df)
 
 # Show Duplicates
 duplicates_df = df[df.duplicated(keep=False)]
-print("\nDataFrame de Linhas Duplicadas:")
+print("\nData Frame de Linhas Duplicadas:")
 print(duplicates_df)
-print(f"\nDimensão do DataFrame de Linhas Duplicadas: {duplicates_df.shape[0]} linhas x {duplicates_df.shape[1]} colunas")
+print(f"\nDimensão do Data Frame de Linhas Duplicadas: {duplicates_df.shape[0]} linhas x {duplicates_df.shape[1]} colunas")
 
 # Show Outliers
 list_outliers_df = list_outliers
-print("\nDataFrame de Valores aberrantes")
+print("\nData Frame de Valores aberrantes")
 print(list_outliers_df)
 
-# Using a Dataiku enviroment? Create those datasets in the main python recipe (change to name_of_input_validation_df)
+# Using a Dataiku environment? Create those datasets in the main python recipe (change to name_of_input_validation_df)
 # Those datasets will be updated in every execution
-#invest_desinvest_validation_df = output_df 
+#name_of_input_validation_df = output_df 
 
-#invest_desinvest_duplicates_df = duplicates_df
+#name_of_input_duplicates_df = duplicates_df
 
-#invest_desinvest_outliers_df = list_outliers_df
+#name_of_input_outliers_df = list_outliers_df
+
