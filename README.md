@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://github.com/jose-de-oliveira/algoritmo_AED/blob/main/c51024d6-1c25-46f5-8c03-b901a18c529e.png" width=30%>
+</p>
+
 # Algoritmo para análise exploratória de dados
 
 ### Análise Exploratória de Dados
