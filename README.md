@@ -38,11 +38,11 @@ def is_quantitative(column):
         return np.issubdtype(column.dtype, np.number) 
 ```
 
-Esses parênteses ao lado de *datetime64* indicam a precisão que os dados estão colocados, aqui a precisão está indo até nanosegundos *ns* já que os dados que trabalhei tem o formato *'2024-02-01 00:00:00.000'*.
+Esses parênteses ao lado de *datetime64* indicam a precisão que os dados estão colocados, aqui a precisão está indo até nanosegundos (ns) já que os dados que trabalhei tem o formato *'2024-02-01 00:00:00.000'*.
 
 #### A Lógica pela função check_input()
 
-A função *check_input()* realiza comparativos de acordo com o nome da variável passada e um dicionário pré-estabelecido (sim, aqui estamos falando do dataframe input_dados), basicamente associamos a esse dicionário um nome de variável, um tipo e caso haja sentido, um limite inferior. A seguir, passando por cada variável do data frame alvo, vamos vendo o quão próximas são um determinado nome de uma variável do dicionário, da variável alvo.
+A função *check_input()* realiza comparativos de acordo com o nome da variável passada e um dicionário pré-estabelecido (sim, aqui estamos falando do dataframe input_dados), basicamente associamos a esse dicionário um nome de variável, um tipo e caso faça sentido, um limite inferior. A seguir, passando por cada variável do data frame alvo, analisamos o quão próximas são um determinado nome de uma variável do dicionário em relação à variável alvo.
 
 ```python
 input_dados = {
@@ -61,11 +61,11 @@ input_dados = {
 
 Como isso é feito? Aguarde que logo logo eu irei explicar sobre o algoritmo utilizado para realização deste passo.
 
-Disso podemos ter uma coluna que pre-avalia a viabilidade de cada informação obtida. 
+Dessa forma, podemos ter uma coluna que avalia a viabilidade de cada informação obtida. 
 
 #### Variáveis Proibidas
 
-Algumas variáveis não fazem sentido de serem extremamente dissecadas. Por exemplo, uma moda numa variável de nome social, por exemplo, pode não ser algo muito informativo. 
+Algumas variáveis não fazem sentido de serem extremamente dissecadas. Por exemplo, uma moda numa variável de nome social não agrega muita informação. 
 
 ```python
 # Forbidden variables are variables that must be checked but does not contribute for the dataset evaluation
@@ -76,7 +76,7 @@ Forbidden_variables = ['nome','fantasia','cnpj','razao']
 eligible_variables = [coluna for coluna in df.columns if not any(palavra in coluna for palavra in Forbidden_variables)]
 ```
 
-Variáveis com esse perfil podem ser excluídas da análise, por palavras chaves numa string de variáveis proibidas (Forbidden Variables). Variáveis elegíveis (Eligible Variables) segue as análises abaixo conforme o tipo.
+Com o uso de palavras chave, variáveis com esse perfil podem ser excluídas da análise, criando o grupo de variáveis proibidas (Forbidden Variables). Variáveis elegíveis (Eligible Variables) seguem as análises abaixo conforme o tipo.
 
 ### Tratativas de Carga de Dados
 
@@ -84,7 +84,7 @@ Nesse ponto analisamos a completude de cada variável, considerando uma variáve
 
 ### Tratativas de Variáveis Quantitativas
 
-Para variáveis quantitativas, que indicam **quanti**dade ou que "contam" alguma coisa, executam-se algumas medidas resumo como, média, mediana, mínimo, máximo, desvio-padrão, coeficiente de variação e coeficiente de assimetria. Algumas variáveis no mundo real podem medir valores aberrantes de assimetria devido a características atípicas porém inerentes ao contexto em que estão inseridas. Para isso a distância entre a mediana e o mínimo e a distância entre a mediana e o máximo. Alterações nessas medidas em múltiplas execuções da base podem alertar melhor sobre o perfil da distribuição dos dados. Além disso, conta-se a quantidade de observações fora do túnel de média + ou - 3 desvios padrões. 
+Para variáveis quantitativas, que indicam **quanti**dade ou que "contam" alguma coisa, executam-se algumas medidas resumo como, média, mediana, mínimo, máximo, desvio-padrão, coeficiente de variação e coeficiente de assimetria. Algumas variáveis no mundo real podem medir valores aberrantes de assimetria devido a características atípicas porém inerentes ao contexto em que estão inseridas. Para isso a distância entre a mediana e o mínimo e a distância entre a mediana e o máximo. Alterações nessas medidas em múltiplas execuções da base podem alertar melhor sobre o perfil da distribuição dos dados. Além disso, conta-se a quantidade de observações fora do túnel de média e 3 desvios padrões para cima e para baixo.
 
 ### Tratativas de Variáveis Qualitativas
 
