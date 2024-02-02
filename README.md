@@ -38,11 +38,11 @@ def is_quantitative(column):
         return np.issubdtype(column.dtype, np.number) 
 ```
 
-Esses parênteses ao lado de datetime64 indica a precisão que os dados estão colocados, aqui a precisão está indo até nanosegundos 'ns' já que os dados que trabalhei tem o formato "'2024-02-01 00:00:00.000'"
+Esses parênteses ao lado de *datetime64* indicam a precisão que os dados estão colocados, aqui a precisão está indo até nanosegundos *ns* já que os dados que trabalhei tem o formato *'2024-02-01 00:00:00.000'*.
 
 #### A Lógica pela função check_input()
 
-A função check_input() realiza comparativos de acordo com o nome da variável passada e um dicionário pré-estabelecido (sim, aqui estamos falando do dataframe input_dados), basicamente associamos a esse dicionário um nome de variável, um tipo e caso haja sentido, um limite inferior. A seguir, passando por cada variável do data frame alvo, vamos vendo o quão próximas são um determinado nome de uma variável do dicionário, da variável alvo.
+A função *check_input()* realiza comparativos de acordo com o nome da variável passada e um dicionário pré-estabelecido (sim, aqui estamos falando do dataframe input_dados), basicamente associamos a esse dicionário um nome de variável, um tipo e caso haja sentido, um limite inferior. A seguir, passando por cada variável do data frame alvo, vamos vendo o quão próximas são um determinado nome de uma variável do dicionário, da variável alvo.
 
 ```python
 input_dados = {
