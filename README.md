@@ -59,7 +59,7 @@ input_dados = {
 }
 ```
 
-Como isso é feito? Aguarde que logo logo eu irei explicar sobre o algoritmo utilizado para realização deste passo.
+Como isso é feito? Dá uma conferida [nesse artigo](https://github.com/jose-de-oliveira/ComparacaoString) onde eu discuto sobre essa metodologia!!
 
 Dessa forma, podemos ter uma coluna que avalia a viabilidade de cada informação obtida. 
 
